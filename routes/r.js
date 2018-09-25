@@ -14,8 +14,10 @@ router.post('/', function(req, res, next) {
     console.log("[express] scriptName: "  + reqScript);
     console.log("[express] env: "         + reqEnv);
 
-    const path = "C:\\Program Files\\R\\R-3.5.1\\bin\\x64\\Rscript.exe"; // win64
-    const scriptPath = "C:\\Users\\holden\\Documents\\devel\\express-r\\routes\\";
+    const path = "Rscript";
+    const scriptPath = "./routes/";
+    // const path = "C:\\Program Files\\R\\R-3.5.1\\bin\\x64\\Rscript.exe"; // win64
+    // const scriptPath = "C:\\Users\\holden\\Documents\\devel\\express-r\\routes\\";
 
     const child=execFile(path, [scriptPath + reqScript + '.R', '--vanilla', reqEnv], (error, stdout, stderr) => {
 
