@@ -4,9 +4,9 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  var waitMinutes = 3;
-  res.setTimeout(waitMinutes*60*1000, function () {
-      res.send({"status":"Waited for " + waitMinutes + "minutes."});
+  var waitSeconds = 1;
+  res.setTimeout(waitSeconds*1000, function () {
+      res.send({"status":"Waited for " + waitSeconds + "seconds."});
   });
 
 });
