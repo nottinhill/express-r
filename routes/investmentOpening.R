@@ -3,8 +3,11 @@
 
 ### Imports ###
 
-# source('/home/saveup-pas/saveup-api.R', chdir = TRUE)
-source('C:/Users/holden/Documents/devel/express-r/routes/saveup-api.R', chdir = TRUE)
+# PROD
+source('/home/saveup-pas/saveup-api.R', chdir = TRUE)
+
+# DEV
+# source('C:/Users/holden/Documents/devel/express-r/routes/saveup-api.R', chdir = TRUE)
 
 
 ### Get Params ###
@@ -16,7 +19,9 @@ cat("[R] environment: ", environment)
 
 ### SaveUp ###
 
+# TEST
 Sys.sleep(120)
+
 saveupConnect(environment)
 pas = loginPASAdmin("testautomation@mailinator.com", "TestAutomation")
 pas$trigger$investmentOpening()
