@@ -6,30 +6,32 @@ const { execFile } = require('child_process');
 /* POST rscript listing. */
 router.post('/', function(req, res, next) {
 
-    const reqBody = req.body;
+    if (!req.body.script || !req.body.env) {
+        console.error("[express] FATAL ERROR: No Script or Environment Specified!")
+    }
 
-    const reqScript        = req.body.script;
-    const reqEnv           = req.body.env;
+    console.log("[express] scriptName: "  + req.body.script);
+    console.log("[express] env: "         + req.body.env);
 
-    console.log("[express] scriptName: "  + reqScript);
-    console.log("[express] env: "         + reqEnv);
-
+    // Linux
     const path = "Rscript";
-    const scriptPath = "./routes/";
-    // const path = "C:\\Program Files\\R\\R-3.5.1\\bin\\x64\\Rscript.exe"; // win64
-    // const scriptPath = "C:\\Users\\holden\\Documents\\devel\\express-r\\routes\\";
+    const scriptPath = "/home/saveup-pas/";
 
-    const child=execFile(path, [scriptPath + reqScript + '.R', '--vanilla', reqEnv], (error, stdout, stderr) => {
+    // Win
+    // const path = "C:\\Program Files\\R\\R-3.5.1\\bin\\x64\\Rscript.exe"; // win64
+    // const scriptPath = "C:\\Users\\UserName\\Documents\\devel\\express-r\\routes\\";
+
+    const child=execFile(path, [scriptPath + req.body.script + '.R', '--vanilla', JSON.stringify(req.body)], (error, stdout, stderr) => {
 
       if (stderr) {
           console.log(`[express] stderr: ${stderr}`);
       }
 
       if (error) {
-         console.error(`[express] exec error: ${error}`);
+         console.error(`[express] ERROR: ${error}`);
          res.status(500).send(stdout);
       } else {
-          console.log(`[express] stdout: ${stdout}`);
+          console.log(`${stdout}`);
           res.status(200).send(stdout);
       }
   });
