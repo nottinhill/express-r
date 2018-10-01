@@ -1,5 +1,22 @@
 # express-r
 
-Simple Tool to test a 3 minute timeout with express in front of R Studio.
+Express Router to call R studio scripts. 
 
-The MIT Licence - Copyright 2018 Stephan Kristyn 
+## Install
+
+### Optional
+
+`export PORT=1234`
+
+### Mandatory
+```
+npm install
+npm start
+```
+
+
+## Usage 
+
+`curl -X POST http://localhost.save-up.net:8444/r -d '{"foo":"bar","john":"doe"}' --header 'Content-Type: application/json'`
+
+_The MIT Licence - Copyright 2018 Stephan Kristyn_
